@@ -1,11 +1,13 @@
 package racingcar.util;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import racingcar.constants.OptionConstants;
 import racingcar.enums.CarMovingStateEnum;
 
 public class CarMovingStateUtil {
     public CarMovingStateEnum judgeMovingState() {
-        if (Randoms.pickNumberInRange(0, 9) >= 4) {
+        if (Randoms.pickNumberInRange(OptionConstants.RANDOM_RANGE_MIN, OptionConstants.RANDOM_RANGE_MAX)
+                >= OptionConstants.MOVING_THRESHOLD) {
             return CarMovingStateEnum.MOVE;
         }
 
