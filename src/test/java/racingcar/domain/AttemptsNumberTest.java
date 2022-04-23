@@ -5,7 +5,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.Test;
 
-class AttemptsNumberInputTest {
+class AttemptsNumberTest {
     private static final String TEST_VALUE_NORMAL = "5";
     private static final String TEST_VALUE_EMPTY = "";
     private static final String TEST_VALUE_MINUS = "-10";
@@ -15,25 +15,25 @@ class AttemptsNumberInputTest {
 
     @Test
     void 시도회수_정상값() {
-        AttemptsNumberInput input = new AttemptsNumberInput(TEST_VALUE_NORMAL);
-        assertThat(input.getAttemptsNumber()).isEqualTo(TEST_RESULT_NORMAL);
+        AttemptsNumber number = new AttemptsNumber(TEST_VALUE_NORMAL);
+        assertThat(number.getAttemptsNumber()).isEqualTo(TEST_RESULT_NORMAL);
     }
 
     @Test
     void 시도회수_빈값() {
-        assertThatThrownBy(() -> new AttemptsNumberInput(TEST_VALUE_EMPTY))
+        assertThatThrownBy(() -> new AttemptsNumber(TEST_VALUE_EMPTY))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     void 시도회수_음수() {
-        assertThatThrownBy(() -> new AttemptsNumberInput(TEST_VALUE_MINUS))
+        assertThatThrownBy(() -> new AttemptsNumber(TEST_VALUE_MINUS))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     void 시도회수_문자입력() {
-        assertThatThrownBy(() -> new AttemptsNumberInput(TEST_VALUE_NOT_NUMERIC))
+        assertThatThrownBy(() -> new AttemptsNumber(TEST_VALUE_NOT_NUMERIC))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

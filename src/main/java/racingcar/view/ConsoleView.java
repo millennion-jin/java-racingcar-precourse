@@ -2,7 +2,7 @@ package racingcar.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import racingcar.constants.MessageConstants;
-import racingcar.domain.AttemptsNumberInput;
+import racingcar.domain.AttemptsNumber;
 import racingcar.domain.Car;
 import racingcar.domain.CarNamesInput;
 import racingcar.domain.Cars;
@@ -16,11 +16,11 @@ public class ConsoleView {
         return new CarNamesInput(inputValue);
     }
 
-    public AttemptsNumberInput readAttemptsNumberInput() {
+    public AttemptsNumber readAttemptsNumber() {
         System.out.println(MessageConstants.CONSOLE_MESSAGE_ATTEMPTS_NUMBER);
 
         String inputValue = Console.readLine();
-        return new AttemptsNumberInput(inputValue);
+        return new AttemptsNumber(inputValue);
     }
 
     public void printRaceStart() {

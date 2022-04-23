@@ -2,10 +2,10 @@ package racingcar.domain;
 
 import racingcar.constants.MessageConstants;
 
-public class AttemptsNumberInput {
+public class AttemptsNumber {
     private final int attemptsNumber;
 
-    public AttemptsNumberInput(String inputValue) {
+    public AttemptsNumber(String inputValue) {
         validateAttemptsNumber(inputValue);
         attemptsNumber = Integer.parseInt(inputValue);
     }
