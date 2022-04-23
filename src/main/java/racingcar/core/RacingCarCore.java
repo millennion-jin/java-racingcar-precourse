@@ -4,6 +4,7 @@ import racingcar.domain.AttemptsNumber;
 import racingcar.domain.CarNamesInput;
 import racingcar.domain.Cars;
 import racingcar.domain.IndexNumber;
+import racingcar.domain.Winners;
 import racingcar.enums.ResultEnum;
 import racingcar.service.RacingCarService;
 import racingcar.view.ConsoleView;
@@ -20,6 +21,7 @@ public class RacingCarCore {
         AttemptsNumber attemptsNumber = processReadAttemptsNumber();
 
         processPlayRace(attemptsNumber);
+        processDeclareWinners();
     }
 
     private void initProcess() {
@@ -76,5 +78,10 @@ public class RacingCarCore {
             Cars cars = racingCarService.playRace();
             consoleView.printCurrentCarsPosition(cars);
         }
+    }
+
+    public void processDeclareWinners() {
+        Winners winners = racingCarService.getWinners();
+        consoleView.printWinners(winners);
     }
 }

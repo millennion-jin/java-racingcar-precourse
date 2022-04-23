@@ -9,6 +9,7 @@ import racingcar.domain.Car;
 import racingcar.domain.CarNamesInput;
 import racingcar.domain.Cars;
 import racingcar.domain.IndexNumber;
+import racingcar.domain.Winners;
 
 class RacingCarServiceTest {
     private static final String TEST_VALUE_NORMAL = "mars,earth,moon,pluto";
@@ -60,6 +61,28 @@ class RacingCarServiceTest {
                     assertThat(cars.get(new IndexNumber(3)).getCarPosition().getPosition()).isEqualTo(1);
                 },
                 STOP_NUMBER, MOVING_FORWARD_NUMBER, STOP_NUMBER, MOVING_FORWARD_NUMBER
+        );
+    }
+
+    @Test
+    void 레이스_2회_동작후_우승자_확인() {
+
+        assertRandomNumberInRangeTest(
+                () -> {
+                    CarNamesInput input = new CarNamesInput(TEST_VALUE_NORMAL);
+                    RacingCarService service = new RacingCarService();
+
+                    service.initService(input);
+                    service.playRace();
+                    service.playRace();
+                    Winners winners = service.getWinners();
+
+                    assertThat(winners.size()).isEqualTo(2);
+                    assertThat(winners.get(new IndexNumber(0)).getName()).isEqualTo("earth");
+                    assertThat(winners.get(new IndexNumber(1)).getName()).isEqualTo("pluto");
+                },
+                STOP_NUMBER, MOVING_FORWARD_NUMBER, STOP_NUMBER, MOVING_FORWARD_NUMBER, STOP_NUMBER,
+                MOVING_FORWARD_NUMBER, STOP_NUMBER, MOVING_FORWARD_NUMBER
         );
     }
 

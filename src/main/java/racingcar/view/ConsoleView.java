@@ -7,6 +7,7 @@ import racingcar.domain.Car;
 import racingcar.domain.CarNamesInput;
 import racingcar.domain.Cars;
 import racingcar.domain.IndexNumber;
+import racingcar.domain.Winners;
 
 public class ConsoleView {
     public CarNamesInput readCarNamesInput() {
@@ -29,7 +30,7 @@ public class ConsoleView {
     }
 
     public void printCurrentCarsPosition(Cars cars) {
-        for(IndexNumber index = new IndexNumber(); index.getIndexNumber() < cars.size(); index.increaseIndex()) {
+        for (IndexNumber index = new IndexNumber(); index.getIndexNumber() < cars.size(); index.increaseIndex()) {
             printCarPosition(cars.get(index));
         }
         System.out.println();
@@ -46,4 +47,24 @@ public class ConsoleView {
 
         System.out.println(stringBuilder);
     }
+
+    public void printWinners(Winners winners) {
+        System.out.print(MessageConstants.CONSOLE_MESSAGE_RACE_WINNER);
+
+        for (IndexNumber indexNumber = new IndexNumber(); indexNumber.getIndexNumber() < winners.size();
+             indexNumber.increaseIndex()) {
+            printWinnerCarName(winners, indexNumber);
+        }
+        System.out.println();
+    }
+
+    private void printWinnerCarName(Winners winners, IndexNumber indexNumber) {
+        if(indexNumber.getIndexNumber() != 0) {
+            System.out.print(MessageConstants.SEPARATOR_WINNER);
+        }
+
+        System.out.print(winners.get(indexNumber).getName());
+    }
+
+
 }

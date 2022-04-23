@@ -5,8 +5,10 @@ import java.util.List;
 import racingcar.constants.OptionConstants;
 import racingcar.domain.Car;
 import racingcar.domain.CarNamesInput;
+import racingcar.domain.CarPosition;
 import racingcar.domain.Cars;
 import racingcar.domain.IndexNumber;
+import racingcar.domain.Winners;
 import racingcar.enums.CarMovingStateEnum;
 import racingcar.util.CarMovingStateUtil;
 
@@ -39,5 +41,41 @@ public class RacingCarService {
         }
     }
 
+    public Winners getWinners() {
+        Winners winners = new Winners();
+        CarPosition maxPosition = getMaxCarPosition();
 
+        for (IndexNumber idx = new IndexNumber(); idx.getIndexNumber() < cars.size(); idx.increaseIndex()) {
+            addConfirmedWinner(winners, cars.get(idx), maxPosition);
+        }
+
+        return winners;
+    }
+
+    private CarPosition getMaxCarPosition() {
+        CarPosition maxPosition = null;
+        for (IndexNumber idx = new IndexNumber(); idx.getIndexNumber() < cars.size(); idx.increaseIndex()) {
+            maxPosition = selectBiggerPosition(maxPosition, cars.get(idx).getCarPosition());
+        }
+
+        return maxPosition;
+    }
+
+    private CarPosition selectBiggerPosition(CarPosition positionA, CarPosition positionB) {
+        if(positionA == null) {
+            return positionB;
+        }
+
+        if(positionA.getPosition() >= positionB.getPosition()) {
+            return positionA;
+        }
+
+        return positionB;
+    }
+
+    private void addConfirmedWinner(Winners winners, Car car, CarPosition maxPosition) {
+        if(car.getCarPosition().getPosition() == maxPosition.getPosition()) {
+            winners.add(car.getCarName());
+        }
+    }
 }
