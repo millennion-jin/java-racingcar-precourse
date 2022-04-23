@@ -5,7 +5,7 @@ import racingcar.constants.OptionConstants;
 import racingcar.enums.CarMovingStateEnum;
 
 public class CarMovingStateUtil {
-    public CarMovingStateEnum judgeMovingState() {
+    public static CarMovingStateEnum judgeMovingState() {
         if (Randoms.pickNumberInRange(OptionConstants.RANDOM_RANGE_MIN, OptionConstants.RANDOM_RANGE_MAX)
                 >= OptionConstants.MOVING_THRESHOLD) {
             return CarMovingStateEnum.MOVE;
