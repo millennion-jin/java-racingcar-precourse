@@ -7,6 +7,10 @@ public class IndexNumber {
         indexNumber = 0;
     }
 
+    public IndexNumber(int index) {
+        indexNumber = index;
+    }
+
     public int getIndexNumber() {
         return indexNumber;
     }

@@ -6,6 +6,9 @@ import racingcar.constants.OptionConstants;
 import racingcar.domain.Car;
 import racingcar.domain.CarNamesInput;
 import racingcar.domain.Cars;
+import racingcar.domain.IndexNumber;
+import racingcar.enums.CarMovingStateEnum;
+import racingcar.util.CarMovingStateUtil;
 
 public class RacingCarService {
 
@@ -21,5 +24,20 @@ public class RacingCarService {
 
         cars = new Cars(carList);
     }
+
+    public Cars playRace() {
+        for (IndexNumber idx = new IndexNumber(); idx.getIndexNumber() < cars.size(); idx.increaseIndex()) {
+            moveCar(cars.get(idx));
+        }
+
+        return cars;
+    }
+
+    private void moveCar(Car car) {
+        if(CarMovingStateUtil.judgeMovingState() == CarMovingStateEnum.MOVE) {
+            car.getCarPosition().increasePosition();
+        }
+    }
+
 
 }
