@@ -1,5 +1,6 @@
 package racingcar.domain;
 
+import racingcar.constants.MessageConstants;
 import racingcar.constants.OptionConstants;
 
 public class CarName {
@@ -17,13 +18,14 @@ public class CarName {
 
     private void validateNullOrEmpty(String name) {
         if (name == null || name.isEmpty()) {
-            throw new IllegalArgumentException("AAA");
+            throw new IllegalArgumentException(MessageConstants.ERROR_MESSAGE_NAME_NULL_EMPTY);
         }
     }
 
     private void validateLength(String name) {
         if (name.length() > OptionConstants.CAR_NAME_LENGTH_LIMIT) {
-            throw new IllegalArgumentException("BBB");
+            throw new IllegalArgumentException(String.format(MessageConstants.ERROR_MESSAGE_NAME_OVER_LIMIT,
+                    OptionConstants.CAR_NAME_LENGTH_LIMIT));
         }
     }
 
