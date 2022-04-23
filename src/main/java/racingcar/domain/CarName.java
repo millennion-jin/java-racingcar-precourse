@@ -1,5 +1,7 @@
 package racingcar.domain;
 
+import racingcar.constants.OptionConstants;
+
 public class CarName {
     private final String name;
 
@@ -20,7 +22,7 @@ public class CarName {
     }
 
     private void validateLength(String name) {
-        if (name.length() > 5) {
+        if (name.length() > OptionConstants.CAR_NAME_LENGTH_LIMIT) {
             throw new IllegalArgumentException("BBB");
         }
     }
